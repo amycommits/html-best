@@ -21,16 +21,77 @@
         <input name="job-desc" id="job-desc" type="text" placeholder="Link to Job Description">
       </div>
       <div>
+        <div>Frontend Technologies</div>
+        <div>
+          <input name="frontend" id="javascript" type="checkbox" value="JavaScript">
+          <label for="javascript">JavaScript</label>
+          <input name="frontend" id="vue" type="checkbox" value="VueJS">
+          <label for="vue">VueJS</label>
+          <input name="frontend" id="react" type="checkbox" value="ReactJS">
+          <label for="react">ReactJS</label>
+          <input name="frontend" id="angular" type="checkbox" value="Angular">
+          <label for="angular">Angular</label>
+        </div>
+      </div>
+      <div>
+        <div>Backend Technologies</div>
+        <div>
+          <input name="backend" id="rails" type="checkbox" value="Ruby on Rails">
+          <label for="rails">Ruby on Rails</label>
+          <input name="backend" id="node" type="checkbox" value="NodeJS">
+          <label for="node">Node</label>
+          <input name="backend" id="golang" type="checkbox" value="GoLang">
+          <label for="golang">Go</label>
+          <input name="backend" id="laravel" type="checkbox" value="Laravel">
+          <label for="laravel">Laravel</label>
+        </div>
+      </div>
+      <div>
         <label for="initial-source">Initial Source</label>
         <input name="initial-source" id="initial-source" type="text" placeholder="Initial Source">
       </div>
       <div>
-        <label for="salary-range">Salary Range</label>
-        <input name="salary-range" id="salary-range" type="text" placeholder="Salary Range">
+        <div>Salary Range (in thousands)</div>
+        <span>
+          <label for="salary-min">Min</label>
+          <input name="salary-min" id="salary-min" type="number" placeholder="50">
+        </span>
+        <span>
+          <label for="salary-max">Min</label>
+          <input name="salary-max" id="salary-max" type="number" placeholder="500">
+        </span>
+      </div>
+      <div>
+        <div>Is Remote?</div>
+        <div>
+          <input name="remote" id="remote-yes" type="radio" value="100">
+          <label for="remote-yes">Yes</label>
+          <input name="remote" id="remote-no" type="radio" value="0">
+          <label for="remote-no">No</label>
+          <input name="remote" id="remote-partial" type="radio" value="50">
+          <label for="remote-partial">Partially</label>
+          <input name="remote" id="remote-na" type="radio" value="null">
+          <label for="remote-na">Not Stated</label>
+        </div>
       </div>
       <div>
         <label for="job-interest">What interested you in this job?</label>
-        <input name="job-interest" id="job-interest" type="text" placeholder="Description">
+        <div>
+          <textarea name="job-interest" id="job-interest" placeholder="Description" rows="4" cols="50"></textarea>
+        </div>
+      </div>
+      <div>
+        <div>Applied?</div>
+        <div>
+          <input name="applied" id="applied-yes" type="radio" value="true">
+          <label for="applied-yes">Yes</label>
+          <input name="applied" id="applied-no" type="radio" value="false">
+          <label for="applied-no">No</label>
+        </div>
+        <div>
+          <label for="applied-date">Date Applied</label>
+          <input name="applied-date" id="applied-date" type="date">
+        </div>
       </div>
       <div>
         <input type="submit" value="submit">
@@ -39,17 +100,29 @@
     <script>
       function handleSubmit(e) {
         e.preventDefault()
+        const frontEndTech = []
+        document.querySelectorAll('input[name=frontend]:checked').forEach(option => {
+          frontEndTech.push(option.value)
+        })
+        const backendTech = []
+        document.querySelectorAll('input[name=backend]:checked').forEach(option => {
+          backendTech.push(option.value)
+        })
         const formData = {
           companyName: document.querySelector('#company-name').value,
           companyIndustry: document.querySelector('#company-industry').value,
           jobTitle: document.querySelector('#job-title').value,
           jobDescription: document.querySelector('#job-desc').value,
+          frontEndTech,
+          backendTech,
           initialSource: document.querySelector("#initial-source").value,
-          salaryRange: document.querySelector('#salary-range').value,
-          jobInterest: document.querySelector('#job-interest').value
-
+          salaryMin: document.querySelector('#salary-min').value,
+          salaryMax: document.querySelector('#salary-max').value,
+          jobInterest: document.querySelector('#job-interest').value,
+          isRemote: document.querySelector('input[name=remote]:checked').value,
+          haveApplied: document.querySelector('input[name=applied]:checked').value,
+          appliedDate: document.querySelector('#applied-date').value
         }
-        console.log(formData)
         return false
       }
       
