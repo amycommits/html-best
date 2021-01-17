@@ -1,19 +1,58 @@
 <html>
   <head>
-    <title>Plain HTML example</title>
+    <title>Interview Tracker</title>
   </head>
   <body>
-    <input id="main-input" type="text">
-    <div>
-      <h2 id="main-output"></h2>
-    </div>
+    <form onsubmit="return handleSubmit(event)">
+      <div>
+        <label for="company-name">Company Name</label>
+        <input name="company-name" id="company-name" type="text" placeholder="Company's Name">
+      </div>
+      <div>
+        <label for="company-industry">Company Industry</label>
+        <input name="company-industry" id="company-industry" type="text" placeholder="Company's Industry">
+      </div>
+      <div>
+        <label for="job-title">Job Title</label>
+        <input name="job-title" id="job-title" type="text" placeholder="Job Title">
+      </div>
+      <div>
+        <label for="job-desc">Job Description</label>
+        <input name="job-desc" id="job-desc" type="text" placeholder="Link to Job Description">
+      </div>
+      <div>
+        <label for="initial-source">Initial Source</label>
+        <input name="initial-source" id="initial-source" type="text" placeholder="Initial Source">
+      </div>
+      <div>
+        <label for="salary-range">Salary Range</label>
+        <input name="salary-range" id="salary-range" type="text" placeholder="Salary Range">
+      </div>
+      <div>
+        <label for="job-interest">What interested you in this job?</label>
+        <input name="job-interest" id="job-interest" type="text" placeholder="Description">
+      </div>
+      <div>
+        <input type="submit" value="submit">
+      </div>
+    </form>
     <script>
-      const mainInput = document.querySelector("#main-input")
-      const mainOutput = document.querySelector("#main-output")
+      function handleSubmit(e) {
+        e.preventDefault()
+        const formData = {
+          companyName: document.querySelector('#company-name').value,
+          companyIndustry: document.querySelector('#company-industry').value,
+          jobTitle: document.querySelector('#job-title').value,
+          jobDescription: document.querySelector('#job-desc').value,
+          initialSource: document.querySelector("#initial-source").value,
+          salaryRange: document.querySelector('#salary-range').value,
+          jobInterest: document.querySelector('#job-interest').value
 
-      mainInput.addEventListener('keyup', (e) => {
-        mainOutput.innerHTML = e.target.value
-      })
+        }
+        console.log(formData)
+        return false
+      }
+      
     </script>
   </body>
 </html>
