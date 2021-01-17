@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Plain HTML example</title>
+  </head>
+  <body>
+    <input id="main-input" type="text">
+    <div>
+      <h2 id="main-output"></h2>
+    </div>
+    <script>
+      const mainInput = document.querySelector("#main-input")
+      const mainOutput = document.querySelector("#main-output")
+
+      mainInput.addEventListener('keyup', (e) => {
+        mainOutput.innerHTML = e.target.value
+      })
+    </script>
+  </body>
+</html>
